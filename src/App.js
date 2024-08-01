@@ -4,7 +4,7 @@ import Data from "./components/home.js"
 function App() {
   return (
     <div className="App">
-      <h1>Weather Forecast App</h1>
+      <h1 className='head'>Weather Forecast App</h1>
       <Data /> 
     </div>
   );
