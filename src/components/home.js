@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 
 function Home() {
     const [weather, setWeather] = useState([]);
@@ -29,6 +29,7 @@ function Home() {
               wind_deg: info.wind.deg,
               visibility: info.visibility,
               description: info.weather[0].description,
+              icon: info.weather[0].icon 
             });
             setError(null);
           } else {
@@ -51,6 +52,15 @@ function Home() {
         {weather.location && (
           <div className='H'>
           <h2 id="location">{weather.location}</h2> 
+          
+          {weather.icon && (
+            <img
+              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+              alt={weather.description}
+              className="weather-icon"
+            />
+
+          )}
           <p>temperature :{weather.temperature}°C</p>
           <p>feels_like : {weather.feels_like}°C</p>
           <p>temp_min : {weather.temp_min}°C</p>
