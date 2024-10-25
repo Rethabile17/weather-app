@@ -1,0 +1,76 @@
+/* Privacy.css */
+.privacy-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .privacy-container h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .privacy-container h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #444;
+  }
+  
+  .privacy-container p,
+  .privacy-container li {
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+  
+  .privacy-container ul {
+    padding-left: 20px;
+    list-style-type: disc;
+  }
+  
+  .privacy-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .privacy-container a:hover {
+    text-decoration: underline;
+  }
+
+  .arrow{
+    color: #007bff;
+    font-size: 4rem;
+    margin-right: 1rem;
+  }
+  
+
+  @media (max-width: 480px) {
+    .privacy-container {
+        padding: 10px; /* Further reduce padding on very small screens */
+    }
+
+    .privacy-container h1 {
+        font-size: 1.5em; /* Smaller heading */
+    }
+
+    .privacy-container h2 {
+        font-size: 1.2em; /* Smaller subheading */
+    }
+
+    .privacy-container p,
+    .privacy-container li {
+        font-size: 0.8em; /* Smaller text */
+    }
+
+    .arrow {
+        display: none;
+        font-size: 2.5rem; /* Smaller arrow icon */
+    }
+}
