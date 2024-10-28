@@ -7,12 +7,23 @@ function Home() {
   const [lat, setLat] = useState(null);
   const [long, setLong] = useState(null);
   const [error, setError] = useState(null);
+  const [theme, setTheme] = useState("light"); // New state for theme
+  const [isCelsius, setIsCelsius] = useState(true); // New state for temperature unit
   const api_key = "f73fbc8ebe1f5a16188a18c7e19fff69";
 
   const navigate = useNavigate();
   const handleNav = () => {
     navigate('/privacy')
   }
+
+  // Toggle temperature unit
+  const toggleUnit = () => {
+    setIsCelsius(!isCelsius);
+  };
+
+  const convertTemp = (temp) => {
+    return isCelsius ? temp : (temp * 9/5) + 32;
+  };
   
   // Fetch weather data from local storage
   const loadCachedData = () => {
@@ -209,6 +220,14 @@ function Home() {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
+  useEffect(() => {
+    document.body.className = theme; // Apply the theme class to the body
+  }, [theme]);
+
   return (
     <div className="home-container">
       <input
@@ -225,6 +244,12 @@ function Home() {
         Use Current Location
       </button>
       <button onClick={handleNav} className="location-button">Privacy & Policies</button>
+      <button onClick={toggleTheme} className="theme-toggle location-button">
+        Toggle {theme === "light" ? "Dark" : "Light"} Mode
+      </button>
+      <button onClick={toggleUnit} className="location-button">
+        Show in °{isCelsius ? "F" : "C"}
+      </button>
       {error && <p className="error">{error}</p>}
 
       {weather.location && (
@@ -236,10 +261,10 @@ function Home() {
             className="weather-icon"
           />
           <div className="info-container">
-            <p>Temperature: {weather.temperature}°C</p>
-            <p>Feels Like: {weather.feels_like}°C</p>
-            <p>Min Temp: {weather.temp_min}°C</p>
-            <p>Max Temp: {weather.temp_max}°C</p>
+          <p>Temperature: {convertTemp(weather.temperature).toFixed(1)}°{isCelsius ? "C" : "F"}</p>
+            <p>Feels Like: {convertTemp(weather.feels_like).toFixed(1)}°{isCelsius ? "C" : "F"}</p>
+            <p>Min Temp: {convertTemp(weather.temp_min).toFixed(1)}°{isCelsius ? "C" : "F"}</p>
+            <p>Max Temp: {convertTemp(weather.temp_max).toFixed(1)}°{isCelsius ? "C" : "F"}</p>
             <p>Pressure: {weather.pressure} hPa</p>
             <p>Humidity: {weather.humidity}%</p>
             <p>Wind Speed: {weather.wind_speed} m/s</p>
@@ -255,7 +280,7 @@ function Home() {
           {forecast.map((item, index) => (
             <div key={index} className="forecast-item">
               <h4>{new Date(item.dt * 1000).toLocaleDateString()}</h4>
-              <p>Temp: {item.main.temp}°C</p>
+              <p>Temp: {convertTemp(item.main.temp).toFixed(1)}°{isCelsius ? "C" : "F"}</p>
               <p>Description: {item.weather[0].description}</p>
               <img
                 src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}

@@ -1,3 +1,33 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #dddddd;
+  --card-background: #ffffff;
+}
+
+.dark {
+  --background-color: #333333;
+  --text-color: #ffffff;
+  --border-color: #555555;
+  --card-background: #444444;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.home-container, .current-weather, .forecast-weather, .city-item {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.forecast-item, .info-container p {
+  background-color: var(--card-background);
+}
+
+
 .App{
   display: flex;
   flex-direction: column;
@@ -161,4 +191,19 @@
   .forecast-item h4 {
     font-size: 1em; 
   }
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.home-container, .current-weather, .forecast-weather, .city-item {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.forecast-item, .info-container p, h3 {
+  background-color: var(--card-background);
 }
