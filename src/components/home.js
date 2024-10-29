@@ -225,7 +225,7 @@ function Home() {
   };
 
   useEffect(() => {
-    document.body.className = theme; // Apply the theme class to the body
+    document.body.className = theme; 
   }, [theme]);
 
   return (
